@@ -16,14 +16,34 @@ const imgURLArr = [
 const promiseArr = []
 
 for (const url of imgURLArr) {
-    const promise = new Promise(function() {
+    const promise = new Promise(function(resolve, reject) {
         const img = document.createElement('img')
-        img.classList.add("picture")
+        img.classList.add("picture", "hidden")
         img.src = url
+
+        img.addEventListener("load", function() {
+            console.log('загрузка изображений...');
+            resolve()
+        })
+
         document.body.append(img)
+        
     })
     
     promiseArr.push(promise)
 }
 
-console.log(promiseArr);
+Promise.all(promiseArr).then(
+    function(resolve) {
+        document.querySelector(".spinner").classList.remove("loading")
+        document.querySelectorAll('.picture').forEach(img => {
+            img.classList.remove("hidden")
+            img.classList.add("show")
+        })
+    },
+    function(reject) {
+        console.log('ошибка загрузки, нам очень жаль...');
+    }
+)
+
+

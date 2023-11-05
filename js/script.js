@@ -14,13 +14,11 @@ let promise = new Promise(function(resolve, reject) {
     let count = 20
 
     btn1.addEventListener('click', () => {
-        console.log('pressed');
         resolve(count)
         clearInterval(timer)
     })
 
     let timer = setInterval(function() {
-        console.log('timer worked');
         count--;
         counter1.textContent = count;
 
@@ -55,13 +53,11 @@ let promise2 = new Promise(function(resolve, reject) {
     let count = 20
 
     btn2.addEventListener('click', () => {
-        console.log('pressed');
         resolve(count)
         clearInterval(timer)
     })
 
     let timer = setInterval(function() {
-        console.log('timer worked');
         count--;
         counter2.textContent = count;
 
